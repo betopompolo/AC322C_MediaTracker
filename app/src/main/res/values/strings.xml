@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Media Tracker</string>
+    <string name="title_activity_book_detail">BookDetailActivity</string>
+    <string name="hello_world">Hello world</string>
 </resources>
