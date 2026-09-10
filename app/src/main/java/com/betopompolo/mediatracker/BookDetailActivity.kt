@@ -1,10 +1,10 @@
 package com.betopompolo.mediatracker
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.widget.TextView
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
+import com.betopompolo.mediatracker.databinding.BadgeLayoutBinding
 import com.betopompolo.mediatracker.databinding.BookDetailLayoutBinding
 
 var bookDetail = BookDetail(
@@ -18,15 +18,21 @@ var bookDetail = BookDetail(
 )
 
 class BookDetailActivity : ComponentActivity() {
+    companion object {
+        const val BOOK_ID_KEY = "bookId"
+    }
+
     private lateinit var binding: BookDetailLayoutBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-
         binding = BookDetailLayoutBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
+        val bookId = intent.getStringExtra(BOOK_ID_KEY)
+        Log.d("MyTag", "Book ID: $bookId")
+
+        setContentView(binding.root)
         binding.bookTitleTextView.text = bookDetail.name
         binding.synopsisTextView.text = bookDetail.synopsis
         binding.author.text = bookDetail.author
@@ -59,15 +65,15 @@ class BookDetailActivity : ComponentActivity() {
     private fun createBadgesViews(badges: List<String>) {
         val maxBadgesPerRow = 3
         for (badge in badges.take(maxBadgesPerRow)) {
-            val badgeLayout = LayoutInflater.from(this).inflate(R.layout.badge_layout, null, false)
-            badgeLayout.findViewById<TextView>(R.id.badge_text_view).text = badge
-            binding.bookBadgeRow1.addView(badgeLayout)
+            val badgeLayout = BadgeLayoutBinding.inflate(layoutInflater)
+            badgeLayout.badgeTextView.text = badge
+            binding.bookBadgeRow1.addView(badgeLayout.root)
         }
 
         for (badge in badges.drop(maxBadgesPerRow).take(maxBadgesPerRow)) {
-            val badgeLayout = LayoutInflater.from(this).inflate(R.layout.badge_layout, null, false)
-            badgeLayout.findViewById<TextView>(R.id.badge_text_view).text = badge
-            binding.bookBadgeRow2.addView(badgeLayout)
+            val badgeLayout = BadgeLayoutBinding.inflate(layoutInflater)
+            badgeLayout.badgeTextView.text = badge
+            binding.bookBadgeRow2.addView(badgeLayout.root)
         }
     }
 

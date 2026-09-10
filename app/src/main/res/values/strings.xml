@@ -3,4 +3,7 @@
     <string name="title_activity_book_detail">BookDetailActivity</string>
     <string name="hello_world">Hello world</string>
     <string name="of">%1$d of %2$d</string>
+    <string name="home_list_item_book_cover">Book cover</string>
+    <string name="book">Book</string>
+    <string name="home_list_item_book_page_count">%1$dp</string>
 </resources>

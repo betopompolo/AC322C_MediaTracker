@@ -16,6 +16,11 @@
             android:label="@string/title_activity_book_detail"
             android:theme="@style/Theme.MediaTracker"
             android:windowSoftInputMode="adjustResize">
+        </activity>
+        <activity
+            android:name=".HomeActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
